@@ -1,0 +1,591 @@
+/*
+Theme Name:         Planus
+Description:        Planus is a clean and minimal html one page to display your work.
+Version:            1.0.0
+Author:             Pixelglow
+Author URI:         http://creativemarket.com/stefusilviu
+*/
+
+
+
+/* ---------- FONTS ---------- */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,600,700,800,300);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);
+
+/* ---------- PARAMETRIC MIXINS ---------- */
+.round (@radius: 5px) {
+	-webkit-border-radius: @radius;
+	border-radius: @radius;
+
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+}
+
+.gradient (@from, @to) {
+	background-color: @from;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(@from), to(@to));
+	background-image: -webkit-linear-gradient(top, @from, @to);
+	background-image:    -moz-linear-gradient(top, @from, @to);
+	background-image:      -o-linear-gradient(top, @from, @to);
+	background-image:         linear-gradient(to bottom, @from, @to);
+}
+
+.box-shadow (@x: 0, @y: 0, @blur: 1px, @color: #000) {
+	-webkit-box-shadow: @arguments;
+	-moz-box-shadow: @arguments;
+	box-shadow: @arguments;
+}
+
+.inner-shadow (@x: 0, @y: 0, @blur: 1px, @color: #000) {
+	-webkit-box-shadow: inset @arguments;
+	-moz-box-shadow: inset @arguments;
+	box-shadow: inset @arguments;
+}
+
+.text-shadow (@x: 0, @y: 0, @blur: 1px, @color: #000) {
+     text-shadow: @arguments;
+}
+
+.transition (@duration: 0.2s, @ease: ease-out) {
+	-webkit-transition: all @duration @ease;
+	-moz-transition: all @duration @ease;
+	-o-transition: all @duration @ease; 
+	transition: all @duration @ease;
+}
+
+/* VARIABLES */
+@gray: #717171;
+@green: #579f6a;
+@red: #df5757;
+@main-font: 'Open Sans', sans-serif;
+
+
+/* ==========================================================================
+   General Styles
+   ========================================================================== */
+body, html {
+    min-width: 768px;
+}
+
+body {
+	font-family: @main-font;
+	background-color: @red;
+	font-size:18px;
+	line-height: 1.5em;
+	height:100%;
+	width: 100%;
+	margin: 0px auto;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Ubuntu', sans-serif;
+}
+
+h1 {
+	font-size: 2.888888888888889em;
+	text-transform: uppercase;
+	font-weight: 700;
+	.text-shadow(0,2px,0,rgba(0,0,0,0.1));
+}
+
+a {
+	color: @gray;
+	text-decoration:none;
+	.transition();
+
+	&:hover {
+		text-decoration: none;
+		color: darken(@gray, 20%);
+	}
+}
+
+.btn-outline-white {
+	.round(4px);
+	border:2px solid #fff;
+
+	&:hover {
+		background-color: #fff;
+	}
+}
+
+.btn-big {
+	font-size: 0.875em;
+	text-transform: uppercase;
+	font-weight: 600;
+	padding:12px 40px;
+}
+
+.btn-small {
+	font-size: 0.875em;
+	text-transform: none;
+	font-weight: 600;
+	padding:6px 20px;
+}
+
+.round-outline {
+	.round(50%);
+	border: 2px solid #fff;
+	display:inline-block;
+
+	.round-photo {
+		.round(50%);
+		margin:4px;
+	}
+}
+
+.icon-outline {
+
+	i {
+		font-size: 2em;
+		width: 60px;
+		height: 60px;
+		border: 2px solid @red;
+		.round(50%);
+		background-color: transparent;
+		line-height: 56px;
+		color: @red;
+		.transition(0.4s);
+
+		&:hover {
+			background-color: @red;
+			color: #fff;
+			border: 2px solid #fff;
+		}
+	}
+}
+
+/* ==========================================================================
+   Navigation Bar
+   ========================================================================== */
+
+.navbar {
+	height: auto;
+	background-color: #fff;
+	.box-shadow(0, 4px, 0, rgba(0,0,0,0.1));
+	z-index:3000;
+	padding:30px 0;
+	.transition(1s);
+
+	.navbar-nav {
+		float: none;
+		margin:10px 0;
+
+		li {
+			display:block;
+			.transition(0.2s);
+			margin-left: 5px;
+
+			a {
+				font-size:14px;
+				line-height:20px;
+				display:block;
+				margin:0;
+				padding:12px 16px;
+				color:#fff;
+				outline: none;
+				.round(4px);
+
+				&:hover {
+					background-color: @red;
+					outline: none;
+					color:#fff;
+				}
+
+				&:focus {
+					background-color: transparent;
+					outline: none;
+				}
+			}
+
+			&:hover {
+				background-color: @red;
+				color:#fff;
+				.round(4px);
+			}
+		}
+
+		.active {
+			background-color: @red;
+			color:#fff;
+			.round(4px);
+			.transition(0.2s);
+
+			a, a:hover {
+				color:#fff;
+			}
+		}
+	}
+
+	.navbar-brand {
+		margin: 0 0 0 15px;
+		padding: 0;
+	}
+
+	.navbar-toggle {
+		margin-top: 3px;
+		margin-bottom: 3px;
+		border: 1px solid lighten(@gray, 30%);
+		border-radius: 4px;
+		outline:none;
+		.transition();
+
+		&:hover {
+			background-color: @gray;
+			border: 1px solid @gray;
+
+			.icon-bar {
+				background-color: #fff;
+				.transition();
+			}
+		}
+
+		.icon-bar {
+			background-color: lighten(@gray, 10%);
+		}
+	}
+
+	.navbar-collapse {
+		background-color: rgba(0,0,0,0.96);
+		text-align:center;
+		.inner-shadow(0, 4px, 0, rgba(0,0,0,0.5));
+		margin-top: 15px;
+	}
+}
+
+.minified {
+	opacity:0.9;
+	padding: 15px 0;
+	.transition(0.5s);
+}
+
+.social-icons {
+    margin-top: 20px;
+
+    .icon-social {
+        height: 60px;
+        width: 60px;
+        display:inline-block;
+        overflow:hidden;
+        .round(50%);
+        border: 2px solid @red;
+        margin-top: 20px;
+
+        &:hover {
+
+        }
+    }
+
+    i {
+        font-size: 40px;
+        line-height: 56px;
+        width: 100%;
+        height: 100%;
+        .transition();
+    }
+
+    .icon-github {
+        color: @red;
+
+        &:hover {
+            color: white;
+        }
+    }
+
+    .icon-bitbucket {
+        color: @red;
+
+        &:hover {
+            color: white;
+        }
+    }
+}
+
+/* ==========================================================================
+   Jumbotron Section
+   ========================================================================== */
+
+.jumbotron {
+	padding:150px 0 60px;
+	margin-top: 0;
+	margin-bottom: 0;
+	background: transparent url('../img/header-bg.jpg') repeat top left;
+	font-size: 1em;
+	height:auto;
+	overflow: hidden;
+
+	.container {
+		text-align: center;
+	}
+
+	h1 {
+		color: #fff;
+		font-size: 2.888888888888889em;
+		margin-top: 40px;
+		margin-bottom: 20px;
+		padding-top: 80px;
+		opacity: 0;
+		.text-shadow(0,1px,2px,rgba(0,0,0,0.5));
+	}
+
+	p {
+		font-size: 1.333333333333333em;
+		line-height: 1.333333333333333em;
+		color:#fff;
+		.text-shadow(0,1px,2px,rgba(0,0,0,0.5));
+		font-weight: 500;
+		margin-bottom: 40px;
+		opacity:0;
+
+		.btn {
+			color: #fff;
+			.text-shadow(0,0,0,rgba(0,0,0,0));
+
+			&:hover {
+				color: @green;
+			}
+		}
+	}
+
+	#header-photo {
+		opacity:0;
+		margin-top:-100px;
+	}
+}
+
+/* ==========================================================================
+   Labs Section
+   ========================================================================== */
+
+#labs {
+	text-align: left;
+	padding:100px 0;
+	color: #fff;
+	.inner-shadow(0, 4px, 0, rgba(0,0,0,0.1));
+
+	h1 {
+		margin: 0 0 40px 0;
+		color: #fff;
+	}
+
+	h2 {
+		font-size: 1.444444444444444em;
+		font-weight: bold;
+		.transition();
+		.text-shadow(0,0,0,rgba(0,0,0,0));
+
+		a {
+			color:#fff;
+		}
+	}
+
+    .labsourcepanel {
+        margin: 10px;
+        padding-bottom: 15px;
+		cursor:default;
+		.transition(0.2s);
+		.round(4px);
+		.box-shadow(0,0,0,rgba(0,0,0,0));
+
+		background-color: @green;
+		.box-shadow(0,0,2px,rgba(0,0,0,0.5));
+
+		h2 {
+			margin-top: 30px;
+			margin-bottom: 30px;
+			.text-shadow(0,1px,2px,rgba(0,0,0,0.5));
+			.transition(0.3s);
+		}
+
+		i {
+			text-align: center;
+			font-size: 3em;
+			line-height: 80px;
+			width: 100%;
+			height: 100%;
+			color: @green;
+			.transition(0.3s);
+		}
+	}
+	
+	.lablist {
+	    list-style-type: none !important;
+	    width: 80%;
+	    
+	    li {
+            display:block;
+            .transition(0.2s);
+            margin-left: 5px;
+
+            a {
+                /* font-size:14px; */
+                /* line-height:20px; */
+                display:block;
+                margin:0;
+                padding:12px 16px;
+                color: #fff;
+                outline: none;
+                .round(4px);
+
+                &:hover {
+                    background-color: white;
+                    outline: none;
+                    color: @red;
+                }
+
+                &:focus {
+                    background-color: transparent;
+                    outline: none;
+                }
+            }
+
+            &:hover {
+                background-color: @red;
+                color:#fff;
+                .round(4px);
+            }
+        }
+
+        .active {
+            background-color: white;
+            color: @red;
+            .round(4px);
+            .transition(0.2s);
+
+            a, a:hover {
+                color:#fff;
+            }
+        }
+	}
+	
+	#labindex {
+	    min-height: 400px;
+	}
+}
+
+
+/* ==========================================================================
+   Footer Section
+   ========================================================================== */
+
+.footer {
+	background-color: #467953;
+	text-align: center;
+
+	p {
+		color: #b6d5be;
+		line-height: 1.666666666666667;
+		margin: 25px 0;
+	}
+}
+
+.scrolltotop {
+	position:fixed;
+	bottom:-50px;
+	right:20px;
+	height: 40px;
+	width: 40px;
+	color:#fff;
+	background-color: rgba(0,0,0,0.2);
+	.round(3px);
+	text-align: center;
+	cursor:pointer;
+	.transition(0.5s);
+	opacity: 0;
+
+	&:hover {
+		color: @red;
+		background-color: #eee;
+		.box-shadow(0,2px,0,rgba(0,0,0,0.5));
+		
+		i {
+			opacity: 1;
+		}
+	}
+
+	i {
+		line-height: 40px;
+		opacity:0.5;
+	}
+}
+
+.show-to-top {
+	opacity: 1;
+	bottom:20px;
+	.transition(0.5s);
+}
+
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+
+	.navbar {
+
+		.navbar-nav {
+			float: right;
+			margin:2px 0 2px 0;
+
+			li {
+				margin-left: 3px;
+
+				a {
+					display:inline-block;
+					padding:8px 12px;
+					color: @gray;
+				}
+			}
+		}
+
+		.navbar-collapse {
+			background-color: rgba(255,255,255,0);
+			text-align:center;
+			.inner-shadow(0, 4px, 0, rgba(0,0,0,0));
+			margin-top: 0;
+		}
+	}
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+	.navbar {
+
+		.navbar-nav {
+			float: right;
+			margin: 2px 0 2px 0;
+
+			li {
+				margin-left: 5px;
+
+				a {
+					display:inline-block;
+					padding:8px 16px;
+					color: @gray;
+				}
+			}
+		}
+
+		.navbar-collapse {
+			background-color: rgba(255,255,255,0);
+			text-align:center;
+			.inner-shadow(0, 4px, 0, rgba(0,0,0,0));
+		}
+	}
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+	#header {
+		height:auto;
+	}
+}
