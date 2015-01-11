@@ -13,5 +13,5 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
 ALLOWED_HOSTS = [
-    'cpe409.kavanaughdevelopment.com
+    'cpe409.kavanaughdevelopment.com'
 ]
