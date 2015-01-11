@@ -541,6 +541,29 @@ a:hover {
 /* ==========================================================================
    Media Queries
    ========================================================================== */
+@media (max-width: 489px) {
+  .hidden-xxs {
+    display: none !important;
+  }
+}
+.visible-xxs {
+  display: none !important;
+}
+@media (max-width: 489px) {
+  .visible-xxs {
+    display: block !important;
+  }
+  table.visible-xxs {
+    display: table;
+  }
+  tr.visible-xxs {
+    display: table-row !important;
+  }
+  th.visible-xxs,
+  td.visible-xxs {
+    display: table-cell !important;
+  }
+}
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .navbar .navbar-nav {
