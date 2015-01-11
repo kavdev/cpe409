@@ -6,11 +6,14 @@
 
 """
 
-from django.views.generic.base import TemplateView
+from django.views.generic.list import ListView
+
+from .models import Lab
 
 
-class IndexView(TemplateView):
+class IndexView(ListView):
     template_name = "base.html"
+    model = Lab
 
 
 def handler500(request):

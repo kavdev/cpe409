@@ -37,6 +37,7 @@ def activate_env():
     filepath = Path(__file__).resolve()
     repo_name = filepath.parents[1].stem
     project_name = repo_name.split("_project")[0]
+    repo_parent = filepath.parents[2]
 
     # Add the site-packages of the chosen virtualenv to work with
     site.addsitedir(str(virtualenv_home.joinpath(repo_name, "Lib", "site-packages")))
@@ -47,7 +48,11 @@ def activate_env():
 
     # Add environment variables
     try:
-        with open(str(Path(project_home, 'cpe409.kavanaughdevelopment.com', repo_name, '.env').resolve())) as f:
+        if repo_parent == project_home:
+            env_path = str(Path(project_home, repo_name, '.env').resolve())
+        else:
+            env_path = str(Path(project_home, repo_parent.stem, repo_name, '.env').resolve())
+        with open(env_path) as f:
             content = f.read()
     except IOError:
         content = ''

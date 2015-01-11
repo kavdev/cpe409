@@ -35,13 +35,18 @@ def activate_env():
 
     filepath = Path(__file__).resolve()
     repo_name = filepath.parents[1].stem
+    repo_parent = filepath.parents[2]
 
     # Add the app's directory to the PYTHONPATH
     sys.path.append(str(filepath.parents[1]))
 
     # Add environment variables
     try:
-        with open(str(Path(project_home, 'cpe409.kavanaughdevelopment.com', repo_name, '.env').resolve())) as f:
+        if repo_parent == project_home:
+            env_path = str(Path(project_home, repo_name, '.env').resolve())
+        else:
+            env_path = str(Path(project_home, repo_parent.stem, repo_name, '.env').resolve())
+        with open(env_path) as f:
             content = f.read()
     except IOError:
         content = ''

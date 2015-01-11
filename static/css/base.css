@@ -14,10 +14,6 @@ Author URI:         http://creativemarket.com/stefusilviu
 /* ==========================================================================
    General Styles
    ========================================================================== */
-body,
-html {
-  min-width: 768px;
-}
 body {
   font-family: 'Open Sans', sans-serif;
   background-color: #df5757;
@@ -458,7 +454,7 @@ a:hover {
   color: #fff;
 }
 #labs #labindex {
-  min-height: 400px;
+  min-height: 200px;
 }
 /* ==========================================================================
    Footer Section

@@ -182,7 +182,6 @@ INSTALLED_APPS = (
     'dj_database_url',
     'static_precompiler',
     'portfolio.apps.core',
-    'portfolio.apps.labs',
 )
 
 # ======================================================================================================== #

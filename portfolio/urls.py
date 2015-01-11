@@ -30,11 +30,6 @@ urlpatterns = patterns('',
     url(r'^flugzeug/', include(admin.site.urls)),  # admin site urls, masked
 )
 
-# Lab display
-# urlpatterns += [
-#     url(r'^labs/$', LabsView.as_view()), name='labs'),
-# ]
-
 # Hooks to intentionally raise errors
 urlpatterns += [
     url(r'^500/$', handler500, name="500"),
