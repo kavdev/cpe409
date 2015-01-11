@@ -8,7 +8,7 @@
     	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge" >
 
-    	<title>cpe409 Portfolio</title>
+    	<title>cpe409 Portfolio{% block subtitle %}{% endblock %}</title>
     
     	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css" />
     	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" type="text/css" />
@@ -17,6 +17,7 @@
     </head>
     
     <body data-spy="scroll" data-target="#my-nav" id="cbp-so-scroller">
+        <noscript><div id="noscript-padding"></div></noscript>
         <!-- Navigation Bar -->
         <div class="navbar navbar-fixed-top">
         	<div class="container">
@@ -59,16 +60,16 @@
         </section>
         <!-- End of Jumbotron -->
         
-        
         <!-- Labs Section -->
         <section id="labs" class="cbp-so-section cbp-so-init">
         	<div class="container cbp-so-side cbp-so-side-top">
         		<div class="row">
-        		    <div class="col-sm-4" id="labindex">
+        		{% block content %}
+        		    <div class="col-sm-4" id="labindex" style="display: none;">
                         <h1>Labs</h1>
                         <ul class="lablist">
                         {% for lab in object_list %}
-                            <li><h2><a {% if foorlook.first %}class="labnavitem active"{% endif %} onclick="lab_display({{ lab.id }})" id="id_lab_index_{{ lab.id }}">{{ lab.title }}</a></h2></li>
+                            <li><h2><a class="labnavitem{% if forloop.first %} active{% endif %}" onclick="lab_display(this)" id="id_lab_navitem_{{ lab.id }}" data-target="#id_lab_panel_{{ lab.id }}">{{ lab.title }}</a></h2></li>
                         {% empty %}
                             <li>No labs yet.</li>
                         {% endfor %}
@@ -76,7 +77,7 @@
                     </div>
                     <div class="col-sm-8">
                     {% for lab in object_list %}
-                        <div class="row labsourcepanel" id="id_lab_panel_{{ lab.id }}">
+                        <div class="row labsourcepanel" {% if not foorloop.first %}style="display: none;"{% endif %} id="id_lab_panel_{{ lab.id }}">
                             <div class="col-sm-12">
                                 <h2>{{ lab.title }}</h2>
                                 <p data-height="410" data-theme-id="11238" data-slug-hash="{{ lab.slug }}" data-default-tab="result" data-user="kavanaugh_development" class='codepen'>See the Pen <a href='http://codepen.io/kavanaugh_development/pen/{{ lab.slug }}/'>{{ lab.slug }}</a> by Alexander Kavanaugh (<a href='http://codepen.io/kavanaugh_development'>@kavanaugh_development</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
@@ -85,6 +86,7 @@
                         </div>
                     {% endfor %}
                     </div>
+                {% endblock %}
         		</div>
         	</div>
         </section>
@@ -102,24 +104,34 @@
         <script type="text/javascript" src="{% static 'js/classie.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
         <script type="text/javascript">
-            function lab_display(lab_id) {
-                // Remove the active status from nav items
-                $(".labnavitem").removeClass("active")
-                
-                // Hide lab panels
-                $(".labsourcepanel").hide()
-                
-                // Show selected panel
-                $("#id_lab_panel_" + lab_id).show()
-                
-                // Set active status to current nav item
-                $("#id_lab_index_" + lab_id).addClass("active")
+            function lab_display(navitem) {
+                // Only switch if it's a new nav item
+                if (!$(navitem).hasClass("active")) {
+                    // Remove the active status from nav items
+                    $(".labnavitem").removeClass("active");
+                    
+                    // Hide lab panels
+                    $(".labsourcepanel").hide();
+                    
+                    // Show selected panel
+                    target = $(navitem).data("target");
+                    $(target).fadeIn(400, "easeInExpo");
+                    
+                    // Set active status to current nav item
+                    $(navitem).addClass("active");
+                }
             }
         </script>
         <script type="text/javascript">
             $(document).ready(function () {
-                
+                target = $(".labnavitem.active").data("target");
+                $("#labindex").fadeIn(1000, "easeInExpo");
+                $(target).fadeIn(1000, "easeInExpo");
             });
+        </script>
         {% block extended_scripts %}{% endblock %}
+        <noscript>
+            <div id="noscript-warning">This website requires JavaScript to function properly. Please enable JavaScript.</div>
+        </noscript>
     </body>
 </html>

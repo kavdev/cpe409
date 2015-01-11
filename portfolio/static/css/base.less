@@ -60,6 +60,24 @@ Author URI:         http://creativemarket.com/stefusilviu
 @red: #df5757;
 @main-font: 'Open Sans', sans-serif;
 
+#noscript-padding {
+    padding-top: 1.5em;
+}
+
+#noscript-warning {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 1000000;
+    text-align: center;
+    font-weight: bold;
+    font-size: 90%;
+    color: white;
+    background-color: rgb(174, 0, 0);
+    padding: 5px 0px;
+}
+
 
 /* ==========================================================================
    General Styles
@@ -325,7 +343,6 @@ a {
 		font-size: 2.888888888888889em;
 		margin-top: 40px;
 		margin-bottom: 20px;
-		padding-top: 80px;
 		opacity: 0;
 		.text-shadow(0,1px,2px,rgba(0,0,0,0.5));
 	}
@@ -351,7 +368,6 @@ a {
 
 	#header-photo {
 		opacity:0;
-		margin-top:-100px;
 	}
 }
 
@@ -364,6 +380,15 @@ a {
 	padding:100px 0;
 	color: #fff;
 	.inner-shadow(0, 4px, 0, rgba(0,0,0,0.1));
+
+    a {
+        color: white;
+        .transition();
+    
+        &:hover {
+            color: darken(@gray, 20%);
+        }
+    }
 
 	h1 {
 		margin: 0 0 40px 0;
@@ -462,6 +487,10 @@ a {
 	
 	#labindex {
 	    min-height: 200px;
+	}
+	
+	.labnavitem {
+	    cursor: pointer;
 	}
 }
 

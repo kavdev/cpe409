@@ -17,8 +17,8 @@ jQuery(document).ready(function() {
 
 	// Animate the header components
 	$(window).load(function () {
-		jQuery('#header-photo').delay( 100 ).animate({opacity: '1', 'margin-top' : '0'}, 1000, 'easeInOutCubic', function() {
-			jQuery('#header h1').delay( -200 ).animate({opacity: '1', 'padding-top': '0'}, 600, 'easeInOutCubic', function() {
+		jQuery('#header-photo').delay( 100 ).animate({opacity: '1'}, 1000, 'easeInOutCubic', function() {
+			jQuery('#header h1').delay( -200 ).animate({opacity: '1'}, 600, 'easeInOutCubic', function() {
 				jQuery('#header p').animate({opacity: '1'}, 400, 'easeInOutCubic');
 			});
 		});

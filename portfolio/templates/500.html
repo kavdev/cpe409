@@ -2,14 +2,12 @@
 
 {% block subtitle %} | HTTP 500{% endblock %}
 
-{% block body %}
+{% block content %}
     <div>
         <h1>Internal Server Error (HTTP 500)</h1>
     </div>
     <p>Oh no! It looks like something went wrong with our code!</p>
-    <p>If this is a frequent occurence, please consider sending us an email at <a href="mailto:bugreports@zenvideocloud.com" target="_blank">bugreports@zenvideocloud.com</a>.
     {% if request.sentry.id %}
-    Include the following Sentry ID in your description:<br /><br />
     <b>SENTRY_ID = {{ request.sentry.id }}</b>
     {% endif %}
     </p>
