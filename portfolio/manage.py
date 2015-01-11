@@ -34,7 +34,7 @@ def activate_env():
     project_home = Path(get_env_variable("PROJECT_HOME"))
 
     filepath = Path(__file__).resolve()
-    repo_name = filepath.parents[1].stem
+    repo_name = filepath.parents[1].name
     repo_parent = filepath.parents[2]
 
     # Add the app's directory to the PYTHONPATH
@@ -45,7 +45,7 @@ def activate_env():
         if repo_parent == project_home:
             env_path = str(Path(project_home, repo_name, '.env').resolve())
         else:
-            env_path = str(Path(project_home, repo_parent.stem, repo_name, '.env').resolve())
+            env_path = str(Path(project_home, repo_parent.name, repo_name, '.env').resolve())
         with open(env_path) as f:
             content = f.read()
     except IOError:

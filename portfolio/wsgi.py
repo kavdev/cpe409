@@ -35,7 +35,7 @@ def activate_env():
     project_home = Path(get_env_variable("PROJECT_HOME"))
 
     filepath = Path(__file__).resolve()
-    repo_name = filepath.parents[1].stem
+    repo_name = filepath.parents[1].name
     project_name = repo_name.split("_project")[0]
     repo_parent = filepath.parents[2]
 
@@ -51,7 +51,7 @@ def activate_env():
         if repo_parent == project_home:
             env_path = str(Path(project_home, repo_name, '.env').resolve())
         else:
-            env_path = str(Path(project_home, repo_parent.stem, repo_name, '.env').resolve())
+            env_path = str(Path(project_home, repo_parent.name, repo_name, '.env').resolve())
         with open(env_path) as f:
             content = f.read()
     except IOError:
