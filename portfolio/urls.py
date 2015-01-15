@@ -14,7 +14,7 @@ from django.contrib.staticfiles.templatetags.staticfiles import static as static
 from django.views.defaults import permission_denied, page_not_found
 from django.views.generic.base import RedirectView
 
-from .apps.core.views import IndexView, handler500
+from .apps.core.views import IndexView, LabView, handler500
 
 admin.autodiscover()
 
@@ -28,6 +28,7 @@ urlpatterns = patterns('',
     url(r'^favicon\.ico$', RedirectView.as_view(url=staticfiles('img/favicon.ico')), name='favicon'),
     url(r'^bitbucket/$', RedirectView.as_view(url="https://bitbucket.org/kavanaugh_development/cpe409/"), name='bitbucket'),
     url(r'^flugzeug/', include(admin.site.urls)),  # admin site urls, masked
+    url(r'^lab/(?P<slug>[^/]+)/$', LabView.as_view()),
 )
 
 # Hooks to intentionally raise errors

@@ -72,7 +72,7 @@
                         <h1>Labs</h1>
                         <ul class="lablist">
                         {% for lab in object_list %}
-                            <li><h2><a class="labnavitem{% if forloop.first %} active{% endif %}" onclick="lab_display(this)" id="id_lab_navitem_{{ lab.id }}" data-target="#id_lab_panel_{{ lab.id }}">{{ lab.title }}</a></h2></li>
+                            <li><h2><a class="labnavitem{% if forloop.first %} active{% endif %}" onclick="lab_display(this)" id="id_lab_navitem_{{ lab.id }}" data-target="#id_lab_panel_{{ lab.id }}">Lab {{ forloop.counter }} - {{ lab.title }}</a></h2></li>
                         {% empty %}
                             <li>No labs yet.</li>
                         {% endfor %}
