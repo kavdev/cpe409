@@ -19,7 +19,7 @@ class IndexView(ListView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
 
-        context["staging"] = True if "staging" in self.request.path else False
+        context["staging"] = True if "staging" in self.request.get_host() else False
 
         return context
 
