@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+{% load compile_static %}
+{% load staticfiles %}
+<html>
+    <head>
+    	<meta charset="UTF-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+
+    	<title>cpe409 Portfolio | Lab 3 Proof</title>
+
+        <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" type="text/css">
+    	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" type="text/css" />
+    	<link rel="stylesheet" href="{% get_static_prefix %}{% compile 'css/base.less' %}" type="text/css" />
+    </head>
+    <body data-spy="scroll" data-target="#my-nav" id="cbp-so-scroller">
+        <section id="labs" class="cbp-so-section cbp-so-init">
+            <div class="container cbp-so-side cbp-so-side-top">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row labsourcepanel" id="id_lab_panel_{{ lab.id }}">
+                            <div class="col-sm-12">
+                                <h2>{{ lab.title }}</h2>
+                                <p data-height="410" data-theme-id="11238" data-slug-hash="{{ lab.slug }}" data-default-tab="result" data-user="kavanaugh_development" class='codepen'>See the Pen <a href='http://codepen.io/kavanaugh_development/pen/{{ lab.slug }}/'>{{ lab.slug }}</a> by Alexander Kavanaugh (<a href='http://codepen.io/kavanaugh_development'>@kavanaugh_development</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+                                <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

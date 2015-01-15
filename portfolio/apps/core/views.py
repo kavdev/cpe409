@@ -7,12 +7,18 @@
 """
 
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 from .models import Lab
 
 
 class IndexView(ListView):
     template_name = "base.html"
+    model = Lab
+
+
+class LabView(DetailView):
+    template_name = "lab_detail.html"
     model = Lab
 
 
