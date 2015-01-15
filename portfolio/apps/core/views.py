@@ -15,6 +15,13 @@ class IndexView(ListView):
     template_name = "base.html"
     model = Lab
 
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(kwargs)
+
+        context["staging"] = True if "staging" in self.request.path else False
+
+        return context
+
 
 def handler500(request):
     """500 error handler which includes ``request`` in the context."""
