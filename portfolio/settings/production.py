@@ -9,8 +9,8 @@ TEMPLATE_DEBUG = DEBUG
 
 # Cookie Settings
 SESSION_COOKIE_NAME = 'cpe409SessionID'
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
 
 ALLOWED_HOSTS = [
     'cpe409.kavanaughdevelopment.com',
