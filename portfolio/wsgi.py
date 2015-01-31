@@ -5,7 +5,7 @@ import site
 import re
 
 from colorama import init as color_init
-from colorama import Fore, Style
+from termcolor import colored
 from pathlib import Path
 
 
@@ -22,9 +22,9 @@ def get_env_variable(name):
     try:
         return os.environ[name]
     except KeyError:
-        error_msg = "Error: The %s environment variable is not set!" % name
+        error_msg = "Error: The {variable_name} environment variable is not set!\n".format(variable_name=name)
         color_init()
-        sys.stderr.write(Fore.RED + Style.BRIGHT + error_msg + "\n")
+        sys.stderr.write(colored(text=error_msg, color='red', attrs=['bold']))
         sys.exit(1)
 
 
