@@ -1,5 +1,6 @@
 Django==1.7.2
 colorama==0.3.3
+termcolor==1.1.0
 djangoajax==2.2.12
 raven==5.1.1
 psycopg2==2.5.4
